@@ -1,0 +1,231 @@
+/* --- Color and Font Variables --- */
+:root {
+  /* Color Palette */
+  --primary-color: #0056b3; /* A professional blue, often used for branding */
+  --secondary-color: #e9ecef; /* Light gray for backgrounds, subtle contrast */
+  --accent-color: #28a745; /* A subtle green for success/links, stands out without being jarring */
+  --text-dark: #343a40; /* Dark gray for main text, good readability */
+  --text-light: #6c757d; /* Lighter gray for secondary text/subtitles */
+  --warning-text: #856404; /* Dark yellow for warning/info messages */
+  --warning-bg: #fff3cd; /* Light yellow for warning background */
+  --warning-border: #ffeeba; /* Border for warning boxes */
+  --white: #ffffff;
+  --shadow-light: rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  --shadow-medium: rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+
+  /* Fonts */
+  --font-heading: 'Montserrat', sans-serif; /* Bold and impactful for titles */
+  --font-body: 'Inter', sans-serif; /* Clean and highly readable for body text */
+}
+
+/* --- General Body Styles --- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--secondary-color); /* Light gray background */
+  display: flex; /* Centers content vertically and horizontally */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevent scrollbars from animations */
+  text-align: center; /* Center text within the main container */
+  line-height: 1.6;
+}
+
+/* --- Main Container Styling --- */
+.main-container {
+  background-color: var(--white);
+  padding: 40px;
+  border-radius: 12px; /* Softly rounded corners */
+  box-shadow: 0 8px 20px var(--shadow-medium); /* Prominent, soft shadow */
+  max-width: 600px;
+  width: 90%; /* Responsive width */
+  box-sizing: border-box; /* Include padding in width calculation */
+  opacity: 0; /* Hidden initially for fade-in animation */
+  transform: translateY(20px); /* Slightly below for slide-in */
+  animation: fadeInContainer 0.8s ease-out forwards;
+  animation-delay: 0.2s; /* Delay for main container */
+}
+
+/* --- Header Styling --- */
+.site-header h1 {
+  font-family: var(--font-heading);
+  font-size: 2.5em; /* Larger heading */
+  color: var(--primary-color); /* Brand blue for main title */
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 1.1em;
+  color: var(--text-light); /* Lighter gray for subtitle */
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-weight: 300; /* Lighter weight for subtitle */
+}
+
+/* --- Redirect Box Styling --- */
+.redirect-box {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid var(--secondary-color); /* Subtle border */
+  opacity: 0; /* Hidden initially for slide-in animation */
+  transform: translateY(20px); /* Slightly below for slide-in */
+  animation: slideInBox 0.8s ease-out forwards;
+  animation-delay: 0.6s; /* Delay after main container fades in */
+}
+
+.redirect-box h2 {
+  font-family: var(--font-heading);
+  font-size: 1.8em;
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.redirect-box p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+/* --- New Link Styling --- */
+.new-link {
+  color: var(--accent-color); /* Green for the link to stand out */
+  font-weight: 600;
+  font-size: 1.2em;
+  text-decoration: none; /* No underline by default */
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+  display: inline-block; /* Allows padding and margin */
+  margin-bottom: 20px;
+  padding: 5px 0;
+  position: relative; /* For the subtle underline effect */
+}
+
+.new-link:hover {
+  color: var(--primary-color); /* Change color on hover */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+/* --- Countdown Styling --- */
+.countdown {
+  font-family: var(--font-heading);
+  font-size: 3.5em; /* Large, prominent countdown */
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 15px 0;
+  display: inline-block; /* For pulsing animation */
+  animation: pulse 1.5s infinite alternate; /* Subtle pulsing animation */
+}
+
+/* --- VPN Message Styling --- */
+.vpn-message {
+  font-size: 0.9em; /* Slightly smaller for an informative note */
+  color: var(--text-light); /* Lighter color to distinguish from main text */
+  margin-top: 25px; /* Add some space above it */
+  padding: 10px 15px;
+  border-left: 4px solid var(--primary-color); /* Subtle indicator border */
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+}
+
+/* --- Animations --- */
+@keyframes fadeInContainer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInBox {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    color: var(--primary-color);
+  }
+  100% {
+    transform: scale(1.05);
+    color: var(--accent-color);
+  }
+}
+
+/* --- NoScript Message --- */
+.noscript-message {
+  background-color: var(--warning-bg); /* Light warning yellow */
+  border: 1px solid var(--warning-border); /* Border for the warning box */
+  color: var(--warning-text); /* Dark text for readability on yellow */
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 30px;
+  font-size: 1.1em;
+  display: none; /* Hidden by default; JavaScript will hide .main-container if enabled */
+}
+
+/* Show noscript message if JavaScript is disabled */
+body:not(.js-enabled) .noscript-message {
+  display: block;
+}
+
+/* Hide main container if JS is disabled to show noscript message */
+body:not(.js-enabled) .main-container {
+  display: none;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 30px;
+  }
+  .site-header h1 {
+    font-size: 2em;
+  }
+  .subtitle {
+    font-size: 1em;
+  }
+  .redirect-box h2 {
+    font-size: 1.5em;
+  }
+  .new-link {
+    font-size: 1.1em;
+  }
+  .countdown {
+    font-size: 3em;
+  }
+  .vpn-message {
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    padding: 20px;
+  }
+  .site-header h1 {
+    font-size: 1.8em;
+  }
+  .subtitle {
+    font-size: 0.9em;
+  }
+  .redirect-box h2 {
+    font-size: 1.3em;
+  }
+  .redirect-box p {
+    font-size: 0.95em;
+  }
+  .new-link {
+    font-size: 1em;
+  }
+  .countdown {
+    font-size: 2.5em;
+  }
+  .vpn-message {
+    font-size: 0.8em;
+  }
+}
